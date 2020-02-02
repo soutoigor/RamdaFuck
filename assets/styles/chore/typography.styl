@@ -1,0 +1,51 @@
+@import './chore/color.styl'
+
+*
+  font-family 'Montserrat', sans-serif !important
+
+html
+  font-size 16px
+  color font-color
+
+.anchor-link
+  cursor pointer
+  text-decoration none
+  border-left 1px solid primary
+  border-top @border-left
+  padding .3rem 0 0 .3rem
+  color font-color-darken
+  font-weight 500
+  border-bottom none
+  position relative
+  &:active
+    transform scale(1.05)
+  &:before
+    content ""
+    position absolute
+    width 0
+    height 0.2rem
+    bottom -0.4rem
+    right 0
+    background-color primary
+    visibility hidden
+    transition all 0.2s ease-in-out
+  &:hover
+    &:before
+      visibility visible
+      width 70%
+
+.title
+  font-weight 600
+  color font-color
+  font-size 2.2rem
+
+.subtitle
+  font-weight 500
+  font-size 1.2rem
+
+.bold
+  font-weight bold
+
+.underline
+  border-bottom 2px solid primary
+  padding-bottom .3rem
