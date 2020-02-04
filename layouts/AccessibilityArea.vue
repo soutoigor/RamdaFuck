@@ -40,7 +40,7 @@
               <font-awesome-icon :icon="['fas', 'sync']" />
             </button>
           </li>
-          <li>
+          <!-- <li>
             <button @click="changeTheme" for="theme-changer" class="btn-icon">
               <transition name="themeIcon" mode="out-in">
                 <font-awesome-icon
@@ -51,7 +51,7 @@
                 <font-awesome-icon key="moon" v-else :icon="['fas', 'moon']" />
               </transition>
             </button>
-          </li>
+          </li> -->
         </ul>
       </transition>
       <div class="accessibility__box">
