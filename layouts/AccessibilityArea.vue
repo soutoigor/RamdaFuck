@@ -55,11 +55,7 @@
         </ul>
       </transition>
       <div class="accessibility__box">
-        <button
-          @click="openMenu = !openMenu"
-          for="theme-changer"
-          class="btn-icon"
-        >
+        <button @click="toggleMenu" for="theme-changer" class="btn-icon">
           <font-awesome-icon
             :icon="['fas', 'cog']"
             class="accessibility__cog-icon"
@@ -91,6 +87,9 @@ export default {
     }
   },
   methods: {
+    toggleMenu() {
+      this.openMenu = !this.openMenu
+    },
     rootElement() {
       return document.querySelector('html')
     },

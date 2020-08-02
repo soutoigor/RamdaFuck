@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import { not, or } from 'ramda'
 import { Fragment } from 'vue-fragment'
 import PrismEditor from 'vue-prism-editor'
 import Modal from '~/layouts/Modal'
@@ -73,7 +74,7 @@ export default {
   },
   computed: {
     shouldDisableButton() {
-      return !this.authorName || !this.code || !this.title
+      return or(or(not(this.authorName), not(this.code)), not(this.title))
     },
   },
   methods: {

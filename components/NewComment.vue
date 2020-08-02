@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { or, not } from 'ramda'
 import Modal from '~/layouts/Modal'
 
 export default {
@@ -53,7 +54,7 @@ export default {
   },
   computed: {
     shouldDisableButtons() {
-      return !this.name || !this.comment
+      return or(not(this.name), not(this.comment))
     },
   },
   methods: {
@@ -76,7 +77,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
 .modal__content
   display flex
   flex-direction column

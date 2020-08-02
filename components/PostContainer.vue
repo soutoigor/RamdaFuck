@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h2 v-if="list.length === 0 && !isLoading" class="bold subtitle">
+    <h2 v-if="feedIsEmpty" class="bold subtitle">
       There's no posts yet :(
     </h2>
     <img v-if="isLoading" src="~assets/spinner.svg" alt="load" />
@@ -12,7 +12,7 @@
           class="post__template"
         />
         <div class="post__comment-title">
-          <span v-if="item.comments.length" class="bold underline">
+          <span v-if="hasComments(item.comments)" class="bold underline">
             Comments
           </span>
         </div>
@@ -21,14 +21,14 @@
             <comments-list :comment="comment" class="post__comment" />
           </div>
         </transition-group>
-        <divider v-if="item !== list[list.length - 1]" />
+        <divider v-if="shouldShowDivider(item)" />
       </div>
     </transition-group>
   </section>
 </template>
 
 <script>
-import { map } from 'ramda'
+import { map, propEq, reverse, and, isEmpty, not, equals, last } from 'ramda'
 import PostTemplate from '~/layouts/PostTemplate'
 import CommentsList from '~/layouts/CommentsList'
 import Divider from '~/layouts/Divider'
@@ -52,6 +52,11 @@ export default {
       isLoading: false,
     }
   },
+  computed: {
+    feedIsEmpty() {
+      return and(isEmpty(this.list), not(this.isLoading))
+    },
+  },
   watch: {
     newPost(data) {
       this.list.unshift(data)
@@ -61,15 +66,24 @@ export default {
     this.getPostList()
   },
   methods: {
+    hasComments(comments) {
+      return not(isEmpty(comments))
+    },
+    shouldShowDivider(item) {
+      return not(equals(item, last(this.list)))
+    },
     newComment({ comment, id }) {
       this.list = map((item) => {
-        if (item._id === id) item.comments.push(comment)
+        if (propEq('_id', id, item)) {
+          item.comments.push(comment)
+        }
         return item
       }, this.list)
     },
     async getPostList() {
       this.isLoading = true
-      this.list = (await this.$axios.$get('/post')).reverse()
+      const actualList = await this.$axios.$get('/post')
+      this.list = reverse(actualList)
       this.isLoading = false
     },
   },

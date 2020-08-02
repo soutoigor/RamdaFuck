@@ -30,10 +30,11 @@
 </template>
 
 <script>
+import { not, equals } from 'ramda'
 export default {
   methods: {
     shouldShowLinkBy(route) {
-      return this.$nuxt.$route.path !== route
+      return not(equals(this.$nuxt.$route.path, route))
     },
   },
 }

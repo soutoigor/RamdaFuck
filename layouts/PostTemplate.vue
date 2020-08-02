@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { head, toUpper, slice, concat } from 'ramda'
 import 'prismjs'
 import 'prismjs/themes/prism-tomorrow.css'
 import Prism from 'vue-prism-component'
@@ -49,7 +50,7 @@ export default {
   computed: {
     postTitle() {
       const { title } = this.post
-      return title[0].toUpperCase() + title.slice(1)
+      return concat(toUpper(head(title)), slice(1, Infinity, title))
     },
   },
   created() {
