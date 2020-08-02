@@ -133,6 +133,9 @@ export default {
 break-point = 800px
 
 .accessibility__container
+  position fixed
+  left 0
+  top 25%
   display flex
   flex-direction row-reverse
   opacity 0.6
@@ -140,6 +143,9 @@ break-point = 800px
   &:hover, &:active
     opacity 1
     transition @transition
+  @media screen and (max-width: 930px)
+    top 12.5%
+    opacity 0.4
 
 .accessibility__box
   display flex
