@@ -26,4 +26,5 @@ export default {
 .comment__message
   margin .8rem 0
   line-height 1.5
+  white-space pre-wrap
 </style>

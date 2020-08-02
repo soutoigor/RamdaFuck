@@ -91,6 +91,7 @@ export default {
 
 .post__subtitle
   margin 1.3rem 0 .5rem 0
+  white-space pre-wrap
 
 .post__footer
   display flex

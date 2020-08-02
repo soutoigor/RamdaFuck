@@ -20,7 +20,7 @@
               class="input fields textarea"
               rows="2"
               type="text"
-              placeholder="Post description"
+              placeholder="Post description (optional)"
             />
             <input
               v-model="authorName"
@@ -73,7 +73,7 @@ export default {
   },
   computed: {
     shouldDisableButton() {
-      return !this.authorName || !this.code || !this.title || !this.description
+      return !this.authorName || !this.code || !this.title
     },
   },
   methods: {
@@ -90,7 +90,7 @@ export default {
       }
       const post = await this.$axios.$post('/post', newPost)
       this.cleanData()
-      this.newPostModal = false
+      this.handleModal(false)
       this.$emit('newPost', post)
     },
     cleanData() {

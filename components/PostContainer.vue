@@ -77,8 +77,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../assets/styles/chore/color.styl'
-
 .post__template
   margin 3rem 0
 
