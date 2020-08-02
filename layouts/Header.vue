@@ -1,9 +1,16 @@
 <template>
   <header class="header__container">
-    <img class="header__image" src="~/assets/ramdafuck-black.png" />
+    <nuxt-link to="/">
+      <img class="header__image" src="~/assets/ramdafuck-black.png" />
+    </nuxt-link>
     <nav class="header__nav___container">
       <ul>
-        <li>
+        <li v-if="shouldShowLinkBy('/')">
+          <nuxt-link class="anchor-link" to="/">
+            Home
+          </nuxt-link>
+        </li>
+        <li v-if="shouldShowLinkBy('/about')">
           <nuxt-link class="anchor-link" to="/about">
             About
           </nuxt-link>
@@ -12,7 +19,7 @@
           <a
             class="anchor-link"
             target="_blank"
-            href="https://github.com/soutoigor"
+            href="https://github.com/soutoigor/app.ramdafuck"
           >
             Fork Me
           </a>
@@ -21,6 +28,17 @@
     </nav>
   </header>
 </template>
+
+<script>
+import { not, equals } from 'ramda'
+export default {
+  methods: {
+    shouldShowLinkBy(route) {
+      return not(equals(this.$nuxt.$route.path, route))
+    },
+  },
+}
+</script>
 
 <style lang="stylus" scoped>
 @import '../assets/styles/chore/color.styl'

@@ -55,11 +55,7 @@
         </ul>
       </transition>
       <div class="accessibility__box">
-        <button
-          @click="openMenu = !openMenu"
-          for="theme-changer"
-          class="btn-icon"
-        >
+        <button @click="toggleMenu" for="theme-changer" class="btn-icon">
           <font-awesome-icon
             :icon="['fas', 'cog']"
             class="accessibility__cog-icon"
@@ -91,6 +87,9 @@ export default {
     }
   },
   methods: {
+    toggleMenu() {
+      this.openMenu = !this.openMenu
+    },
     rootElement() {
       return document.querySelector('html')
     },
@@ -133,6 +132,9 @@ export default {
 break-point = 800px
 
 .accessibility__container
+  position fixed
+  left 0
+  top 25%
   display flex
   flex-direction row-reverse
   opacity 0.6
@@ -140,6 +142,9 @@ break-point = 800px
   &:hover, &:active
     opacity 1
     transition @transition
+  @media screen and (max-width: 930px)
+    top 12.5%
+    opacity 0.4
 
 .accessibility__box
   display flex

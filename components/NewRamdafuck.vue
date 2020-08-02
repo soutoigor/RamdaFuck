@@ -20,7 +20,7 @@
               class="input fields textarea"
               rows="2"
               type="text"
-              placeholder="Post description"
+              placeholder="Post description (optional)"
             />
             <input
               v-model="authorName"
@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import { not, or } from 'ramda'
 import { Fragment } from 'vue-fragment'
 import PrismEditor from 'vue-prism-editor'
 import Modal from '~/layouts/Modal'
@@ -73,7 +74,7 @@ export default {
   },
   computed: {
     shouldDisableButton() {
-      return !this.authorName || !this.code || !this.title || !this.description
+      return or(or(not(this.authorName), not(this.code)), not(this.title))
     },
   },
   methods: {
@@ -90,7 +91,7 @@ export default {
       }
       const post = await this.$axios.$post('/post', newPost)
       this.cleanData()
-      this.newPostModal = false
+      this.handleModal(false)
       this.$emit('newPost', post)
     },
     cleanData() {
