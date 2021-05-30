@@ -8,6 +8,11 @@ And that's it. 🤓
 
 Start using: https://ramdafuck.netlify.com/
 
+Why RamdaFuck?
+We say "RamdaFuck" for when a function made with Ramda gets so big, nested and confuse, that it gets unreadable and worst that if not using Ramda.
+
+Just like the "callback hell" 👹
+
 ## Screenshots
 > Desktop  
 ![Desktop usage](https://i.ibb.co/hs0Vb69/desktop.gif)
